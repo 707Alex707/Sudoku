@@ -1,0 +1,26 @@
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: auto;
+}
+td {
+    width: 11.11%;
+    position: relative;
+}
+td:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+td .content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: gold;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
