@@ -60,9 +60,9 @@ function scanbox(x, y) {
     console.log("xmin:" + (x*3) + " ymin:" + (y*3));
     console.log("xmax:" + (x*3 + 2) + " Ymax:" + (y*3+2));
 
-    for(var j = (x*3); j <= (x*3 + 2); j++){
+    for(var j = (y*3); j <= (y*3 + 2); j++){
 
-        for(var i = (y*3); i <= (y*3 + 2); i++){
+        for(var i = (x*3); i <= (x*3 + 2); i++){
             values[count] = document.getElementById(i + "" + j).innerHTML;
             count++;
             console.log(values[count-1]);
@@ -85,8 +85,8 @@ function possibleval(x, y) {
     }
 
 
-    //removecommon(values_possible, values_x);
-    //removecommon(values_possible, values_y);
+    removecommon(values_possible, values_x);
+    removecommon(values_possible, values_y);
     console.log(values_xy);
     removecommon(values_possible, values_xy);
 
