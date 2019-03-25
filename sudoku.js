@@ -1,10 +1,4 @@
-genTable();
-recursiveFill(0, 0, 0);
-if (scan0() == true) {
-    console.log("THERE IS A ZERO");
-}else{
-    console.log("There are no zeroes");
-}
+var solvedpuz;
 
 
 function genTable() {
@@ -166,14 +160,35 @@ function recursiveFill(x, y, value) {
 }
 
 function storeToArray() {
-    var values = [
-        []
-    ];
+    //var values;
+    const rows = 9;
+    const cols = 9;
+    const defaultValue = 0;
+    var values = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
 
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
-            values = parseInt(document.getElementById(x + "" + y).innerHTML);
+            values[y][x] = parseInt(document.getElementById(x + "" + y).innerHTML);
         }
     }
     return values;
+}
+
+document.getElementById("slider").oninput = function() {
+    console.log(this.value);
+    genTable();
+    recursiveFill(0,0,0);
+    solvedpuz = storeToArray();
+    removevalues(this.value);
+};
+
+function removevalues(chance){
+
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            if(ranInt(chance) <= 5){
+                document.getElementById(x + "" + y).innerHTML = "";
+            }
+        }
+    }
 }
