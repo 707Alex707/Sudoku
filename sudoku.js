@@ -1,4 +1,7 @@
-var solvedpuz;
+const rows = 9;
+const cols = 9;
+const defaultValue = 0;
+var puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue)); //Stored puzzle[y][x] as its an array of arrays
 
 
 function genTable() {
@@ -22,22 +25,20 @@ function genTable() {
 
 // Scans a row and returns an array of values
 function scanx(y) {
-    var i;
     var values = [];
 
-    for (i = 0; i < 9; i++) {
+    for (var i = 0; i < 9; i++) {
         values[i] = document.getElementById(i + "" + y).innerHTML;
-        //console.log(values[i]);
     }
     return values;
 }
 
-// Scans a column and returns an array of values 
+// Scans a column and returns an array of values
 function scany(x) {
-    var i;
+
     var values = [];
 
-    for (i = 0; i < 9; i++) {
+    for (var i = 0; i < 9; i++) {
         values[i] = document.getElementById(x + "" + i).innerHTML;
     }
     return values;
@@ -81,6 +82,12 @@ function possibleval(x, y, value) {
     removecommon(values_possible, values_x);
     removecommon(values_possible, values_y);
     removecommon(values_possible, values_xy);
+
+    for(var i = 0; i < values_possible.length; i++){
+        if(typeof(values_possible[i]) == "undefined"){
+            values_possible.splice(i);
+        }
+    }
 
     if (values_possible.length === 0) {
         values_possible[0] = 0;
@@ -129,17 +136,12 @@ function recursiveFill(x, y, value) {
     document.getElementById(x + "" + y).innerHTML = setvalue[ranInt(setvalue.length)];
 
     // If a zero or undefined is found, go back one space
-    if (document.getElementById(x + "" + y).innerHTML == 0 || document.getElementById(x + "" + y).innerHTML == "undefined") {
-        // Set undefined to zero
-        if (document.getElementById(x + "" + y).innerHTML == "undefined") {
-            document.getElementById(x + "" + y).innerHTML = 0
-        }
+    if (document.getElementById(x + "" + y).innerHTML == 0) {
         if (x - 1 < 0) {
             x = 8;
             y--;
         }
-        document.getElementById((x - 1) + "" + y).innerHTML;
-
+        
         recursiveFill(x - 1, y, document.getElementById((x - 1) + "" + y).innerHTML);
 
     } else {
@@ -150,7 +152,7 @@ function recursiveFill(x, y, value) {
             y++;
         }
         if (y == 9) {
-            console.log("COMPLETE");
+            console.log("Puzzle Generated");
 
         } else {
 
@@ -175,11 +177,11 @@ function storeToArray() {
 }
 
 document.getElementById("slider").oninput = function() {
-    console.log(this.value);
     genTable();
+    puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
     recursiveFill(0,0,0);
-    solvedpuz = storeToArray();
-    removevalues(this.value);
+    //writepuzzle(puzzle);
+    //removevalues(this.value);
 };
 
 function removevalues(chance){
@@ -189,6 +191,16 @@ function removevalues(chance){
             if(ranInt(chance) >= 5){
                 document.getElementById(x + "" + y).innerHTML = "";
             }
+        }
+    }
+}
+
+function writepuzzle(inpuzzle){
+
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            document.getElementById(x + "" + y).innerHTML = inpuzzle[y][x];
+
         }
     }
 }
