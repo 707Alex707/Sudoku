@@ -1,8 +1,16 @@
 const rows = 9;
 const cols = 9;
 const defaultValue = 0;
-var puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue)); //Stored puzzle[y][x] as its an array of arrays
+var puzzle;
 
+document.getElementById("slider").oninput = function() {
+    genTable();
+    puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
+    recursiveFill(0,0,0);
+    writepuzzle(puzzle);
+    removevalues(this.value);
+    console.log(puzzle);
+};
 
 function genTable() {
 
@@ -64,7 +72,7 @@ function scanbox(x, y) {
     return values;
 }
 
-//Untested
+//Finds possible values for a given square
 function possibleval(x, y, value) {
 
     var values_x = scanx(y);
@@ -74,7 +82,7 @@ function possibleval(x, y, value) {
     //creates an array of possible values, removes them if they are found
     var values_possible = [];
     for (var i = 0; i < 9; i++) {
-        if ((i + 1) != value) {
+        if ((i + 1) !== value) {
             values_possible[i] = i + 1;
         }
     }
@@ -100,7 +108,7 @@ function scan0() {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
 
-            if (document.getElementById(x + "" + y).innerHTML == 0) {
+            if (document.getElementById(x + "" + y).innerHTML === 0) {
                 return true;
             }
         }
@@ -136,7 +144,7 @@ function recursiveFill(x, y, value) {
     puzzle[y][x] = setvalue[ranInt(setvalue.length)];
 
     // If a zero or undefined is found, go back one space
-    if (puzzle[y][x] == 0) {
+    if (puzzle[y][x] === 0) {
         if (x - 1 < 0) {
             x = 8;
             y--;
@@ -150,7 +158,7 @@ function recursiveFill(x, y, value) {
             x = 0;
             y++;
         }
-        if (y == 9) {
+        if (y === 9) {
             console.log("Puzzle Generated");
 
         } else {
@@ -160,12 +168,9 @@ function recursiveFill(x, y, value) {
     }
 }
 
+//Returns stored puzzle values from document
 function storeToArray() {
-    //var values;
-    const rows = 9;
-    const cols = 9;
-    const defaultValue = 0;
-    var values = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
+    var values = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue)); //creates 9x9 array
 
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
@@ -175,16 +180,9 @@ function storeToArray() {
     return values;
 }
 
-document.getElementById("slider").oninput = function() {
-    genTable();
-    puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
-    recursiveFill(0,0,0);
-    writepuzzle(puzzle);
-    removevalues(this.value);
-};
 
+//Removes elements based on a probability input
 function removevalues(chance){
-
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if(ranInt(chance) >= 5){
@@ -194,8 +192,8 @@ function removevalues(chance){
     }
 }
 
+//Writes puzzle to html document
 function writepuzzle(inpuzzle){
-
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             document.getElementById(x + "" + y).innerHTML = inpuzzle[y][x];
