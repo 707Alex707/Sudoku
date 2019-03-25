@@ -186,7 +186,7 @@ function removevalues(chance){
 
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
-            if(ranInt(chance) <= 5){
+            if(ranInt(chance) >= 5){
                 document.getElementById(x + "" + y).innerHTML = "";
             }
         }
