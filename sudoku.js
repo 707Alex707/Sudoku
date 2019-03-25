@@ -28,7 +28,7 @@ function scanx(y) {
     var values = [];
 
     for (var i = 0; i < 9; i++) {
-        values[i] = document.getElementById(i + "" + y).innerHTML;
+        values[i] = puzzle[y][i];
     }
     return values;
 }
@@ -39,7 +39,7 @@ function scany(x) {
     var values = [];
 
     for (var i = 0; i < 9; i++) {
-        values[i] = document.getElementById(x + "" + i).innerHTML;
+        values[i] = puzzle[i][x];
     }
     return values;
 }
@@ -57,7 +57,7 @@ function scanbox(x, y) {
     for (var j = (y * 3); j <= (y * 3 + 2); j++) {
 
         for (var i = (x * 3); i <= (x * 3 + 2); i++) {
-            values[count] = document.getElementById(i + "" + j).innerHTML;
+            values[count] = puzzle[j][i];
             count++;
         }
     }
@@ -133,16 +133,15 @@ function removecommon(array1, temp) {
 function recursiveFill(x, y, value) {
 
     var setvalue = possibleval(x, y, value);
-    document.getElementById(x + "" + y).innerHTML = setvalue[ranInt(setvalue.length)];
+    puzzle[y][x] = setvalue[ranInt(setvalue.length)];
 
     // If a zero or undefined is found, go back one space
-    if (document.getElementById(x + "" + y).innerHTML == 0) {
+    if (puzzle[y][x] == 0) {
         if (x - 1 < 0) {
             x = 8;
             y--;
         }
-        
-        recursiveFill(x - 1, y, document.getElementById((x - 1) + "" + y).innerHTML);
+        recursiveFill(x - 1, y, puzzle[y][(x-1)]);
 
     } else {
 
@@ -180,8 +179,8 @@ document.getElementById("slider").oninput = function() {
     genTable();
     puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
     recursiveFill(0,0,0);
-    //writepuzzle(puzzle);
-    //removevalues(this.value);
+    writepuzzle(puzzle);
+    removevalues(this.value);
 };
 
 function removevalues(chance){
