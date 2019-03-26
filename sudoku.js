@@ -35,15 +35,9 @@ document.getElementById("hintbtn").onclick = function () {
             }
         }
     }
-    if(size >= 0){
+    if(size > 0){
         document.getElementById(locations[ranInt(size)]).style.setProperty("display", "block");
     }
-
-
-
-
-
-
 
 };
 
