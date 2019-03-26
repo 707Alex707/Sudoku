@@ -1,17 +1,24 @@
 table {
+    table-layout: fixed;
     width: 60vh;
+    height: 60vh;
     border-collapse: collapse;
     margin: auto;
+    font-size: xx-large;
+    text-align: center;
+    vertical-align: middle;
 }
+
 td {
     width: 11.11%;
     position: relative;
 }
+
 td:after {
     content: '';
     display: block;
-    margin-top: 100%;
 }
+
 td .content {
     position: absolute;
     top: 0;
@@ -21,6 +28,22 @@ td .content {
     background: gold;
 }
 
-table, th, td {
+tr {
+    width: 8vh;
+    height: 8vh;
+}
+
+table,
+th,
+td {
     border: 1px solid black;
+}
+
+.title {
+    font-size: 4em;
+    text-align: center;
+}
+
+.btncontainer {
+    text-align: center;
 }

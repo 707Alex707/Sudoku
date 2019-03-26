@@ -10,23 +10,21 @@
 
 <body>
 
-    <h1>Sudoku</h1>
+    <div class="title">Sudoku</div>
 
-    <div>
+    <Br>
+
+    <div id="sudoku-table"></div>
+    <br>
+    <div class="btncontainer">
         <p>
             Difficulty Slider
         </p>
-        <div class="slidecontainer">
-            <input type="range" min="10" max="30" class="slider" id="slider">
-        </div>
-
-            <div class="btncontainer">
-                <button type="button" id="solbtn">View Solution</button> 
-                <button type="button" id="hintbtn">Hint</button>
-            </div>
+        
+        <input type="range" min="10" max="30" class="slider" id="slider">
+        <button type="button" id="solbtn">View Solution</button>
+        <button type="button" id="hintbtn">Hint</button>
     </div>
-
-    <div id="sudoku-table"></div>
 
 
     <script src="sudoku.js"></script>
