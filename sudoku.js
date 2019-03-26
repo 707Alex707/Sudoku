@@ -13,14 +13,7 @@ document.getElementById("slider").oninput = function () {
 };
 
 document.getElementById("solbtn").onclick = function () {
-    for (var y = 0; y < 9; y++) {
-        for (var x = 0; x < 9; x++) {
-            document.getElementById(x + "" + y).style.setProperty("display", "block");
-        }
-    }
-
-    //or this
-    //writepuzzle(puzzle);
+    writepuzzle(puzzle);
 };
 
 document.getElementById("hintbtn").onclick = function () {
@@ -29,18 +22,19 @@ document.getElementById("hintbtn").onclick = function () {
     var size = 0;
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
-            if (document.getElementById(x + "" + y).style.display === "none") {
-                locations[size] = x + "" + y;
+            if (document.getElementById(x + "" + y).innerHTML == "") {
+                locations[size] = x + "-" + y;
                 size++;
             }
         }
     }
     if(size > 0){
-        document.getElementById(locations[ranInt(size)]).style.setProperty("display", "block");
+        var ran = ranInt(size);
+        var array = locations[ran].split('-');
+        document.getElementById(array[0] + "" + array[1]).innerHTML = puzzle[parseInt(array[1])][parseInt(array[0])];
     }
 
 };
-
 
 function genTable() {
 
@@ -215,9 +209,7 @@ function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if (ranInt(chance) >= 5) {
-                document.getElementById(x + "" + y).style.setProperty("display", "none");
-                // or this
-                // document.getElementById(x + "" + y).innerHTML = "";
+                document.getElementById(x + "" + y).innerHTML = "";
 
             }
         }
