@@ -3,14 +3,49 @@ const cols = 9;
 const defaultValue = 0;
 var puzzle;
 
-document.getElementById("slider").oninput = function() {
+document.getElementById("slider").oninput = function () {
     genTable();
     puzzle = Array(rows).fill(null).map(_ => Array(cols).fill(defaultValue));
-    recursiveFill(0,0,0);
+    recursiveFill(0, 0, 0);
     writepuzzle(puzzle);
     removevalues(this.value);
     console.log(puzzle);
 };
+
+document.getElementById("solbtn").onclick = function () {
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            document.getElementById(x + "" + y).style.setProperty("display", "block");
+        }
+    }
+
+    //or this
+    //writepuzzle(puzzle);
+};
+
+document.getElementById("hintbtn").onclick = function () {
+
+        var x  = ranInt(9);
+        var y = ranInt(9);
+        
+        if ( document.getElementById(x + "" + y).style.display === "none"){
+        document.getElementById(x + "" + y).style.setProperty("display", "block");
+        }else{
+           hint();
+        }
+
+};
+
+function hint(){
+    var x  = ranInt(8);
+    var y = ranInt(8);
+    
+    if ( document.getElementById(x + "" + y).style.display === "none"){
+    document.getElementById(x + "" + y).style.setProperty("display", "block");
+    }else{
+       hint();
+    }
+}
 
 function genTable() {
 
@@ -21,7 +56,7 @@ function genTable() {
         var y;
         for (y = 0; y < 9; y++) {
             //html = html + "<td id=" + y + x + ">" + y + "_" + x + "</td>";
-            html = html + "<td id=" + y + x + ">" + "</td>";
+            html = html + "<td id= cell_" + y + x + "> <div id=" + y + x + "> </td>";
         }
         html = html + "</tr>";
     }
@@ -91,8 +126,8 @@ function possibleval(x, y, value) {
     removecommon(values_possible, values_y);
     removecommon(values_possible, values_xy);
 
-    for(var i = 0; i < values_possible.length; i++){
-        if(typeof(values_possible[i]) == "undefined"){
+    for (var i = 0; i < values_possible.length; i++) {
+        if (typeof (values_possible[i]) == "undefined") {
             values_possible.splice(i);
         }
     }
@@ -149,7 +184,7 @@ function recursiveFill(x, y, value) {
             x = 8;
             y--;
         }
-        recursiveFill(x - 1, y, puzzle[y][(x-1)]);
+        recursiveFill(x - 1, y, puzzle[y][(x - 1)]);
 
     } else {
 
@@ -180,20 +215,22 @@ function storeToArray() {
     return values;
 }
 
-
 //Removes elements based on a probability input
-function removevalues(chance){
+function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
-            if(ranInt(chance) >= 5){
-                document.getElementById(x + "" + y).innerHTML = "";
+            if (ranInt(chance) >= 5) {
+                document.getElementById(x + "" + y).style.setProperty("display", "none");
+                // or this
+                // document.getElementById(x + "" + y).innerHTML = "";
+
             }
         }
     }
 }
 
 //Writes puzzle to html document
-function writepuzzle(inpuzzle){
+function writepuzzle(inpuzzle) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             document.getElementById(x + "" + y).innerHTML = inpuzzle[y][x];
