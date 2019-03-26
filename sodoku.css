@@ -7,6 +7,7 @@ table {
     font-size: xx-large;
     text-align: center;
     vertical-align: middle;
+    font-family: Helvetica;
 }
 
 td {
@@ -46,4 +47,15 @@ td {
 
 .btncontainer {
     text-align: center;
+}
+
+input[type = text]{
+    font-size: xx-large;
+    border: 0px solid white;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0;
+    outline: none;
+    /*color: transparent;
+    text-shadow: 0 0 0 black;*/
 }

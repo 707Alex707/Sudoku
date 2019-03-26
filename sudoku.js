@@ -22,9 +22,10 @@ document.getElementById("hintbtn").onclick = function () {
     var size = 0;
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
-            if (document.getElementById(x + "" + y).innerHTML == "") {
+            if (!(parseInt(document.getElementById(x + "" + y).innerHTML) > 0)) {
                 locations[size] = x + "-" + y;
                 size++;
+               
             }
         }
     }
@@ -209,7 +210,7 @@ function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if (ranInt(chance) >= 5) {
-                document.getElementById(x + "" + y).innerHTML = "";
+                document.getElementById(x + "" + y).innerHTML = "<input type='text' maxlength='1'>";
 
             }
         }
@@ -225,3 +226,4 @@ function writepuzzle(inpuzzle) {
         }
     }
 }
+
