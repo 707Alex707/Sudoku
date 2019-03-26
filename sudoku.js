@@ -25,27 +25,28 @@ document.getElementById("solbtn").onclick = function () {
 
 document.getElementById("hintbtn").onclick = function () {
 
-        var x  = ranInt(9);
-        var y = ranInt(9);
-        
-        if ( document.getElementById(x + "" + y).style.display === "none"){
-        document.getElementById(x + "" + y).style.setProperty("display", "block");
-        }else{
-           hint();
+    var locations = [];
+    var size = 0;
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            if (document.getElementById(x + "" + y).style.display === "none") {
+                locations[size] = x + "" + y;
+                size++;
+            }
         }
+    }
+    if(size >= 0){
+        document.getElementById(locations[ranInt(size)]).style.setProperty("display", "block");
+    }
+
+
+
+
+
+
 
 };
 
-function hint(){
-    var x  = ranInt(8);
-    var y = ranInt(8);
-    
-    if ( document.getElementById(x + "" + y).style.display === "none"){
-    document.getElementById(x + "" + y).style.setProperty("display", "block");
-    }else{
-       hint();
-    }
-}
 
 function genTable() {
 
