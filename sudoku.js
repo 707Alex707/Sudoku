@@ -38,6 +38,7 @@ document.getElementById("hintbtn").onclick = function () {
         var ran = ranInt(size);
         var array = locations[ran].split('-');
         document.getElementById(array[0] + "" + array[1]).innerHTML = puzzle[parseInt(array[1])][parseInt(array[0])];
+        document.getElementById("cell_" + array[0] + "" + array[1]).style.backgroundColor = 'rgb(0, 194, 48)';
     }
 
 };
