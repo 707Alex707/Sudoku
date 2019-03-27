@@ -269,3 +269,10 @@ function filterInputBox(obj) {
    // obj.style.color = '#04a8f4';
 }
 
+module.exports = {
+	scanx,
+	scany,
+	possibleval,
+	ranInt,
+	removecommon
+}
