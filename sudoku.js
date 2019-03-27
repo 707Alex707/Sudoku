@@ -77,7 +77,7 @@ document.getElementById("checkbtn").onclick = function () {
 
 function genTable() {
 
-    var html = "<table>";
+    var html = "<table cellspacing ='0'>";
 
     for (var x = 0; x < 9; x++) {
         html = html + "<tr>";

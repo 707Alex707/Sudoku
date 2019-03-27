@@ -9,6 +9,7 @@ table {
     vertical-align: middle;
     font-family: Helvetica;
     border: 100px solid white;
+    border-collapse: separate;
 }
 
 td {
@@ -39,6 +40,7 @@ table,
 th,
 td {
     border: 1px solid black;
+    
 }
 
 .title {
