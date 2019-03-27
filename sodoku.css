@@ -8,6 +8,7 @@ table {
     text-align: center;
     vertical-align: middle;
     font-family: Helvetica;
+    border: 100px solid white;
 }
 
 td {
@@ -53,9 +54,10 @@ input[type = text]{
     font-size: xx-large;
     border: 0px solid white;
     text-align: center;
-    width: 100%;
+    width: 40%;
     box-shadow: 0;
     outline: none;
+    background-color: transparent;
     /*color: transparent;
     text-shadow: 0 0 0 black;*/
 }
