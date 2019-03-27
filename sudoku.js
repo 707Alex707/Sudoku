@@ -210,7 +210,7 @@ function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if (ranInt(chance) >= 5) {
-                document.getElementById(x + "" + y).innerHTML = "<input type='text' maxlength='1'>";
+                document.getElementById(x + "" + y).innerHTML = "<input type='text' maxlength='1' onkeyup='filterInputBox(this)'>";
 
             }
         }
@@ -225,5 +225,10 @@ function writepuzzle(inpuzzle) {
 
         }
     }
+}
+
+function filterInputBox(obj){
+    obj.value = obj.value.replace(/[^0-9]|[1-9]{2,}/g, '');
+    obj.style.color = 'Blue';
 }
 
