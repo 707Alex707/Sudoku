@@ -267,5 +267,9 @@ function writepuzzle(inpuzzle) {
 function filterInputBox(obj) {
     obj.value = obj.value.replace(/[^1-9]|[1-9]{2,}/g, '');
    // obj.style.color = '#04a8f4';
+    if(obj.value !== ""){
+        obj.parentElement.parentElement.style.backgroundColor = "#DDD";
+    }
+
 }
 

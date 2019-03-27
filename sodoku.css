@@ -57,10 +57,10 @@ input[type = text]{
     border: 0px solid white;
     text-align: center;
     width: 40%;
-    box-shadow: 0;
+    /*box-shadow: 0; */
     outline: none;
     background-color: transparent;
-    color: #04a8f4
+    /*color: #04a8f4; */
     /*color: transparent;
     text-shadow: 0 0 0 black;*/
 }
