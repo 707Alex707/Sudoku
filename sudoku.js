@@ -273,3 +273,10 @@ function filterInputBox(obj) {
 
 }
 
+module.exports = {
+	scanx,
+	scany,
+	possibleval,
+	ranInt,
+	removecommon
+}
