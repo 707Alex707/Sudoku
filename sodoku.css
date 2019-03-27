@@ -58,6 +58,24 @@ input[type = text]{
     box-shadow: 0;
     outline: none;
     background-color: transparent;
+    color: #04a8f4
     /*color: transparent;
     text-shadow: 0 0 0 black;*/
 }
+
+td:hover::after{
+    background-color: #ffa;
+}
+
+td:first-child {
+    border-left:solid;
+  }
+  td:nth-child(3n) {
+    border-right:solid ;
+  }
+  tr:first-child {
+    border-top:solid;
+  }
+  tr:nth-child(3n) td {
+    border-bottom:solid ;
+  }

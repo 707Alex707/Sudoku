@@ -14,6 +14,11 @@ document.getElementById("slider").oninput = function () {
 
 document.getElementById("solbtn").onclick = function () {
     writepuzzle(puzzle);
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            document.getElementById("cell_" + x + "" + y).style.backgroundColor = 'rgb(0, 194, 48)';
+        }
+    }
 };
 
 document.getElementById("hintbtn").onclick = function () {
@@ -25,14 +30,46 @@ document.getElementById("hintbtn").onclick = function () {
             if (!(parseInt(document.getElementById(x + "" + y).innerHTML) > 0)) {
                 locations[size] = x + "-" + y;
                 size++;
-               
+
             }
         }
     }
-    if(size > 0){
+    if (size > 0) {
         var ran = ranInt(size);
         var array = locations[ran].split('-');
         document.getElementById(array[0] + "" + array[1]).innerHTML = puzzle[parseInt(array[1])][parseInt(array[0])];
+    }
+
+};
+
+document.getElementById("checkbtn").onclick = function () {
+    var locations = [];
+    var size = 0;
+    for (var y = 0; y < 9; y++) {
+        for (var x = 0; x < 9; x++) {
+            if (!(parseInt(document.getElementById(x + "" + y).innerHTML) > 0)) {
+                locations[size] = x + "-" + y;
+                size++;
+
+            }
+        }
+    }
+
+    if (size > 0) {
+
+        for (var i = 0; i < size; i++) {
+            var array = locations[i].split('-');
+            var x = array[0];
+            var y = array[1];
+
+            if (document.getElementById("input_" + x + "" + y).value == puzzle[y][x]) {
+                document.getElementById("cell_" + x + "" + y).style.backgroundColor = 'rgb(0, 194, 48)';
+                document.getElementById("input_" + x + "" + y).style.color = 'black';
+            } else {
+                document.getElementById("cell_" + x + "" + y).style.backgroundColor = 'rgb(247, 52, 52)';
+                document.getElementById("input_" + x + "" + y).style.color = 'black';
+            }
+        }
     }
 
 };
@@ -210,7 +247,7 @@ function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if (ranInt(chance) >= 5) {
-                document.getElementById(x + "" + y).innerHTML = "<input type='text' maxlength='1' onkeyup='filterInputBox(this)'>";
+                document.getElementById(x + "" + y).innerHTML = "<input type='text' id='input_" + x + "" + y + "' maxlength='1' onkeyup='filterInputBox(this)'>";
 
             }
         }
@@ -226,8 +263,8 @@ function writepuzzle(inpuzzle) {
     }
 }
 
-function filterInputBox(obj){
-    obj.value = obj.value.replace(/[^0-9]|[1-9]{2,}/g, '');
-    obj.style.color = '#04a8f4';
+function filterInputBox(obj) {
+    obj.value = obj.value.replace(/[^1-9]|[1-9]{2,}/g, '');
+   // obj.style.color = '#04a8f4';
 }
 
