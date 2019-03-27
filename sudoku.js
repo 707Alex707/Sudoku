@@ -248,7 +248,7 @@ function removevalues(chance) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             if (ranInt(chance) >= 5) {
-                document.getElementById(x + "" + y).innerHTML = "<input type='text' id='input_" + x + "" + y + "' maxlength='1' onkeyup='filterInputBox(this)'>";
+                document.getElementById(x + "" + y).innerHTML = "<input type='text' id='input_" + x + "" + y + "' maxlength='1' onkeyup='filterInputBox(this)' onchange='updatecolor(this)'>";
 
             }
         }
@@ -267,10 +267,12 @@ function writepuzzle(inpuzzle) {
 function filterInputBox(obj) {
     obj.value = obj.value.replace(/[^1-9]|[1-9]{2,}/g, '');
    // obj.style.color = '#04a8f4';
+}
+
+function updatecolor(obj){
     if(obj.value !== ""){
         obj.parentElement.parentElement.style.backgroundColor = "#DDD";
     }
-
 }
 
 module.exports = {
@@ -279,4 +281,4 @@ module.exports = {
 	possibleval,
 	ranInt,
 	removecommon
-}
+};
