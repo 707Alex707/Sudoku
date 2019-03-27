@@ -222,13 +222,12 @@ function writepuzzle(inpuzzle) {
     for (var y = 0; y < 9; y++) {
         for (var x = 0; x < 9; x++) {
             document.getElementById(x + "" + y).innerHTML = inpuzzle[y][x];
-
         }
     }
 }
 
 function filterInputBox(obj){
     obj.value = obj.value.replace(/[^0-9]|[1-9]{2,}/g, '');
-    obj.style.color = 'Blue';
+    obj.style.color = '#04a8f4';
 }
 
