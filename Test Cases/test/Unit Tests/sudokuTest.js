@@ -1,5 +1,5 @@
 const chai = require('chai');
-const sudoku = require('sudoku');
+const sudoku = require('../sudoku1.js');
 
 // Test for function scanx()
 it('scanx(y) puzzle not initialized', function() {
@@ -37,7 +37,7 @@ it('ranInt() input is negative number', function() {
 it('ranInt() input is 0', function() {
 	x1 = sudoku.ranInt(0);
 	x2 = sudoku.ranInt(0);
-	chai.assert(x1 != x2);	// check that both are different
+	chai.assert(x1 = x2);	// check that both are different
 });
 
 it('ranInt() input is null', function() {
