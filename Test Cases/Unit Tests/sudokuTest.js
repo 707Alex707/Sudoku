@@ -1,5 +1,5 @@
 const chai = require('chai');
-const sudoku = require('../sudoku');
+const sudoku = require('../../sudoku');
 
 // Test for function scanx()
 it('scanx(y) puzzle not initialized', function() {
