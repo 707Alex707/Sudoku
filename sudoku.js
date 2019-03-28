@@ -63,7 +63,7 @@ document.getElementById("checkbtn").onclick = function () {
             var x = array[0];
             var y = array[1];
 
-            if (document.getElementById("input_" + x + "" + y).value === puzzle[y][x]) {
+            if (document.getElementById("input_" + x + "" + y).value == puzzle[y][x]) {
                 document.getElementById("cell_" + x + "" + y).style.backgroundColor = 'rgb(0, 194, 48)';
                 document.getElementById("input_" + x + "" + y).style.color = 'black';
             } else {
