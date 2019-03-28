@@ -8,6 +8,10 @@ To run the game:
 - Extract files to a directory
 - Open sudoku.html in a web browser (Chrome, Firefox)
 
+or 
+
+- Open this link: https://ethanb.tk/html/sudoku.html
+
 --------------------------------------------------------------------------------------------
 
 To run tests:
