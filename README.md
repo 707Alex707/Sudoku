@@ -15,5 +15,5 @@ To run tests:
 - import sudoku.js
 - install mocha framework and chai library from command prompt to unpack package.JSON by using command ('npm install')
 - change destination to sudoku file
-- import the functions from sudoku.js using command
+- import the functions from sudoku.js
 - use command ('npm run test') to test a specified function
