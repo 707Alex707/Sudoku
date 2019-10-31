@@ -2,6 +2,7 @@
 SOFE2715U Sudoku Project
 
 This is a sudoku game created for SOFE 2715U.
+![](project3.gif)
 
 To run the game:
 - Download the repository(zipped folder)
